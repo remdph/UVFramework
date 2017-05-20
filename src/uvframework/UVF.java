@@ -19,7 +19,7 @@ public class UVF extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/LoginView.fxml"));
         
         Scene scene = new Scene(root);
         
