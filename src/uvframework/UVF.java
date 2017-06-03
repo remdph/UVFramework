@@ -6,10 +6,9 @@
 package uvframework;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import uvframework.tools.MySQLConn;
 import uvframework.tools.WindowsManager;
 
 /**
@@ -20,7 +19,11 @@ public class UVF extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        WindowsManager.getStage("/login").show();
+        if(MySQLConn.InitConn()){
+            WindowsManager.getStage("/login").show();
+        }else{
+            JOptionPane.showMessageDialog(null, "Error Conectando a la DB");
+        }
     }
 
     /**

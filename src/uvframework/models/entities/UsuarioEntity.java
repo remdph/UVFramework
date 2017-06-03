@@ -11,4 +11,8 @@ package uvframework.models.entities;
  */
 public class UsuarioEntity {
     
+    public String UsrUsr;
+    public String UsrNom;
+    public String UsrPwd;
+    
 }
