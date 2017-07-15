@@ -51,4 +51,27 @@ public class UsuariosModel {
         
     }
     
+    public static Boolean Nuevo(UsuarioEntity user){
+        try {
+           
+            String qry = "INSERT INTO usuario VALUES(?,?,?);";
+            
+            PreparedStatement pst = MySQLConn.conn.prepareStatement(qry);
+            
+            pst.setString(1, user.UsrUsr);
+            pst.setString(2, user.UsrNom);
+            pst.setString(3, user.UsrPwd);
+            
+            int err = pst.executeUpdate();
+            
+            return err != 0;
+            
+        } catch (SQLException ex) {
+                       
+            Logger.getLogger(UsuariosModel.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
+    
 }

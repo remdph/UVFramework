@@ -8,7 +8,7 @@ package uvframework;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import org.json.JSONObject;
+import uvframework.models.entities.UsuarioEntity;
 import uvframework.tools.MySQLConn;
 import uvframework.tools.WindowsManager;
 
@@ -17,6 +17,9 @@ import uvframework.tools.WindowsManager;
  * @author Rafael Maldonado
  */
 public class UVF extends Application {
+    
+    
+    public static UsuarioEntity user;
     
     @Override
     public void start(Stage stage) throws Exception {

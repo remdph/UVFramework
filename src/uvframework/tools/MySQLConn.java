@@ -23,7 +23,7 @@ public class MySQLConn {
     
         try {
             
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sistema", "root", "r3344t89");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/portafolio", "root", "r3344t89");
             return true;
             
         } catch (SQLException ex) {
