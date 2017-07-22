@@ -74,4 +74,23 @@ public class UsuariosModel {
 
     }
     
+    public static ResultSet buscar(String key){
+        try {
+           
+            String qry = "SELECT * FROM usuario WHERE UsrUsr LIKE ? OR UsrNom LIKE ?;";
+            
+            PreparedStatement pst = MySQLConn.conn.prepareStatement(qry);
+            
+            pst.setString(1, '%'+key+'%');
+            pst.setString(2, '%'+key+'%');
+            
+            return pst.executeQuery();
+            
+        } catch (SQLException ex) {
+                       
+            Logger.getLogger(UsuariosModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
 }

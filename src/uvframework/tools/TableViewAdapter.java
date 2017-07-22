@@ -1,6 +1,8 @@
 
 package uvframework.tools;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -156,6 +158,50 @@ public class TableViewAdapter {
         }
     }
     
+    public void fromResultSet(ResultSet data, ArrayList<TableViewColumn> titles) throws SQLException{
+        this.wt.getColumns().clear();
+        this.wt.getItems().clear();
+        Iterator columns = titles.iterator();
+
+        //Añadimos Columnas
+        if(titles.size() > 0){
+            while(columns.hasNext()){
+                TableViewColumn column = (TableViewColumn) columns.next();
+                this.addColumn(column);
+            }
+        }
+        
+        while(data.next()){
+            columns = titles.iterator();
+            //JSONObject jrow = (JSONObject) data;
+            TableViewRow row = new TableViewRow();
+
+            while(columns.hasNext()){
+                TableViewColumn column = (TableViewColumn) columns.next();
+                String content = column.getFormated(data.getObject(column.getKey()).toString());
+                row.addField(column.getKey(),content);
+            }
+            
+            wt.setRowFactory(tv -> {
+                TableRow<Map> rrow = new TableRow<>();
+                
+                rrow.setOnMouseClicked(e ->  {
+                    if(e.getClickCount() == 2){
+                        this.RowDoubleClickHandler.accept(e);
+                    }
+                    
+                    if(e.getClickCount() == 1){
+                        this.RowClickHandler.accept(e);
+                    }
+                });
+                
+                return rrow;
+            });
+
+            this.addRow(row);
+        }
+    }
+
     public void addColumn(TableViewColumn col){
         TableColumn<Map, String> column = new TableColumn<>(col.getTitle());
         column.setCellValueFactory(new MapValueFactory(col.getKey()));

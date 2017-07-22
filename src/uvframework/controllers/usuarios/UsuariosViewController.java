@@ -6,9 +6,13 @@
 package uvframework.controllers.usuarios;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
+import uvframework.models.UsuariosModel;
 import uvframework.tools.WindowsManager;
 
 /**
@@ -17,6 +21,8 @@ import uvframework.tools.WindowsManager;
  * @author Rafael Maldonado
  */
 public class UsuariosViewController implements Initializable {
+    
+    @FXML private TableView ResultadoTable; 
 
     /**
      * Initializes the controller class.
@@ -24,6 +30,18 @@ public class UsuariosViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+    
+    
+    @FXML
+    private void BuscarBtnClick() throws SQLException{
+        ResultSet rs = UsuariosModel.buscar("");
+        
+        while(rs.next()){
+            System.out.print(rs.getObject("UsrUsr").toString());
+            System.out.print(" - ");
+            System.out.println(rs.getObject("UsrNom").toString());
+        }
     }
 
     @FXML 
