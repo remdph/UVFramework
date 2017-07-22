@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="315.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uvframework.controllers.usuarios.UsuariosEditarViewController">
+   <children>
+      <Label layoutX="33.0" layoutY="35.0" text="Editar Usuario">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="307.0" layoutY="246.0" mnemonicParsing="false" onAction="#GuardarBtnClick" prefHeight="38.0" prefWidth="96.0" text="Guardar" />
+      <Button layoutX="33.0" layoutY="246.0" mnemonicParsing="false" onAction="#CancelarBtnClick" prefHeight="38.0" prefWidth="96.0" text="Cancelar" />
+      <TextField fx:id="UsrUsr" disable="true" editable="false" layoutX="33.0" layoutY="84.0" prefHeight="38.0" prefWidth="242.0" promptText="Usuario" />
+      <TextField fx:id="UsrNom" layoutX="33.0" layoutY="136.0" prefHeight="38.0" prefWidth="370.0" promptText="Nombre" />
+      <PasswordField fx:id="UsrPwd" layoutX="33.0" layoutY="188.0" prefHeight="38.0" prefWidth="242.0" promptText="Password" />
+   </children>
+</AnchorPane>

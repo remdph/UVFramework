@@ -8,11 +8,16 @@ package uvframework.controllers.usuarios;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
+import uvframework.UVF;
 import uvframework.models.UsuariosModel;
+import uvframework.tools.TableViewAdapter;
+import uvframework.tools.TableViewColumn;
+import uvframework.tools.TableViewRow;
 import uvframework.tools.WindowsManager;
 
 /**
@@ -37,11 +42,26 @@ public class UsuariosViewController implements Initializable {
     private void BuscarBtnClick() throws SQLException{
         ResultSet rs = UsuariosModel.buscar("");
         
-        while(rs.next()){
-            System.out.print(rs.getObject("UsrUsr").toString());
-            System.out.print(" - ");
-            System.out.println(rs.getObject("UsrNom").toString());
-        }
+        TableViewAdapter tva = new TableViewAdapter(ResultadoTable);
+        ArrayList titles = new ArrayList();
+        
+        titles.add(new TableViewColumn("UsrUsr","Usuario",100.0));
+        titles.add(new TableViewColumn("UsrNom","Nombre",200.0));
+        titles.add(new TableViewColumn("UsrPwd","Clave",100.0));
+        
+        //tva.setRowClickHandler((e)->{this.TableRowClick();});
+        tva.setRowDoubleClickHandler((e)->{this.TableRowClick();});
+        
+        tva.fromResultSet(rs, titles);
+    }
+    
+    private void TableRowClick(){
+
+        String UsrUsr = ((TableViewRow) ResultadoTable.getSelectionModel().getSelectedItem()).get("UsrUsr").toString();
+        
+        UVF.workdata.put("UsrUsr", UsrUsr);
+        
+        WindowsManager.getStage("/usuarios/editar",true).show();
     }
 
     @FXML 

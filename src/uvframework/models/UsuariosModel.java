@@ -74,6 +74,55 @@ public class UsuariosModel {
 
     }
     
+    public static Boolean Editar(UsuarioEntity user){
+        try {
+           
+            String qry = "UPDATE usuario SET UsrNom = ?, UsrPwd = ? WHERE UsrUsr = ?;";
+            
+            PreparedStatement pst = MySQLConn.conn.prepareStatement(qry);
+                        
+            pst.setString(1, user.UsrNom);
+            pst.setString(2, user.UsrPwd);
+            pst.setString(3, user.UsrUsr);
+            
+            int err = pst.executeUpdate();
+            
+            return err != 0;
+            
+        } catch (SQLException ex) {
+                       
+            Logger.getLogger(UsuariosModel.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+    }
+    
+    public static UsuarioEntity getOne(String UsrUsr){
+        try {
+            UsuarioEntity row = new UsuarioEntity();
+            String qry = "SELECT * FROM usuario WHERE UsrUsr = ?;";
+            
+            PreparedStatement pst = MySQLConn.conn.prepareStatement(qry);
+            pst.setString(1, UsrUsr);
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                row.UsrUsr = rs.getString("UsrUsr");
+                row.UsrNom = rs.getString("UsrNom");
+                row.UsrPwd = rs.getString("UsrPwd");
+            }else{
+                row = null;
+            }
+            
+            return row;
+            
+        } catch (SQLException ex) {
+                       
+            Logger.getLogger(UsuariosModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public static ResultSet buscar(String key){
         try {
            
