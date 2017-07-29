@@ -5,6 +5,7 @@
  */
 package uvframework.controllers;
 
+import java.beans.PropertyVetoException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -23,13 +24,17 @@ public class LoginViewController implements Initializable {
     
     @FXML private TextField UsrUsr;
     @FXML private TextField UsrPwd;
+    @FXML private TextField UsrTel;
+    @FXML private TextField UsrEdad;
     
     @FXML   
-    private void LoginBtnClick() {
+    private void LoginBtnClick() throws PropertyVetoException {
                 
         UsuarioEntity user = new UsuarioEntity();
-        user.UsrUsr = UsrUsr.getText();
-        user.UsrPwd = UsrPwd.getText();
+        user.setUsrUsr(UsrUsr.getText());
+        user.setUsrPwd(UsrPwd.getText());
+        user.setUsrTel(UsrTel.getText());
+        user.setUsrEdad(UsrEdad.getText());
         
         UsuarioEntity dbuser = UsuariosModel.Login(user);
         

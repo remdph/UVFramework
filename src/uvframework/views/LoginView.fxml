@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="260.0" prefWidth="386.0" stylesheets="@../assets/UVF.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uvframework.controllers.LoginViewController">
+<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="386.0" stylesheets="@../assets/UVF.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uvframework.controllers.LoginViewController">
     <children>
         <Button layoutX="29.0" layoutY="257.0" onAction="#LoginBtnClick" prefHeight="40.0" prefWidth="329.0" text="Login" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
       <TextField fx:id="UsrUsr" layoutX="20.0" layoutY="80.0" promptText="User" styleClass="inputs" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
@@ -17,5 +17,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
+      <TextField fx:id="UsrTel" layoutX="24.0" layoutY="197.0" promptText="Telefono" styleClass="inputs" />
+      <TextField fx:id="UsrEdad" layoutX="24.0" layoutY="240.0" promptText="Edad" styleClass="inputs" />
     </children>
 </AnchorPane>
